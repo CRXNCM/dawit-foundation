@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PageIntro from '../components/ui/PageIntro'
 import { useLanguage } from '../context/LanguageContext'
 
 export default function ContactPage() {
@@ -9,11 +10,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="page-intro container">
-        <p className="eyebrow">{page.eyebrow}</p>
-        <h1>{page.title}</h1>
-        <p className="lead">{page.lead}</p>
-      </section>
+      <PageIntro eyebrow={page.eyebrow} title={page.title} lead={page.lead} />
       <section className="section section-white">
         <div className="container contact-grid">
           <div>

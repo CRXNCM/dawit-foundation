@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { localizeProgram, programs } from '../data/content'
 import { useLanguage } from '../context/LanguageContext'
 import MediaFrame from '../components/ui/MediaFrame'
+import PageIntro from '../components/ui/PageIntro'
 import NotFoundPage from './NotFoundPage'
 
 export default function ProgramDetailPage() {
@@ -14,11 +15,7 @@ export default function ProgramDetailPage() {
 
   return (
     <>
-      <section className="page-intro container">
-        <p className="eyebrow">{t.programsPage.eyebrow}</p>
-        <h1>{data.title}</h1>
-        <p className="lead">{data.summary}</p>
-      </section>
+      <PageIntro eyebrow={t.programsPage.eyebrow} title={data.title} lead={data.summary} />
       <section className="section section-white">
         <div className="container article-layout">
           <div className="prose">

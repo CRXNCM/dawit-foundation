@@ -1,4 +1,5 @@
 import ProgramCard from '../components/ui/ProgramCard'
+import PageIntro from '../components/ui/PageIntro'
 import { localizeProgram, programs } from '../data/content'
 import { useLanguage } from '../context/LanguageContext'
 
@@ -7,11 +8,7 @@ export default function ProgramsPage() {
 
   return (
     <>
-      <section className="page-intro container">
-        <p className="eyebrow">{t.programsPage.eyebrow}</p>
-        <h1>{t.programsPage.title}</h1>
-        <p className="lead">{t.programsPage.lead}</p>
-      </section>
+      <PageIntro eyebrow={t.programsPage.eyebrow} title={t.programsPage.title} lead={t.programsPage.lead} />
       <section className="section" style={{ paddingTop: 24 }}>
         <div className="container program-grid">
           {programs.map((program) => (

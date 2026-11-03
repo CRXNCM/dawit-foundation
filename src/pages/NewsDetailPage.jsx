@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { localizeNews, news } from '../data/content'
 import { useLanguage } from '../context/LanguageContext'
 import MediaFrame from '../components/ui/MediaFrame'
+import PageIntro from '../components/ui/PageIntro'
 import NotFoundPage from './NotFoundPage'
 
 export default function NewsDetailPage() {
@@ -19,11 +20,7 @@ export default function NewsDetailPage() {
 
   return (
     <>
-      <section className="page-intro container">
-        <p className="eyebrow">{date}</p>
-        <h1>{data.title}</h1>
-        <p className="lead">{data.summary}</p>
-      </section>
+      <PageIntro eyebrow={date} title={data.title} lead={data.summary} />
       <section className="section section-white">
         <div className="container article-layout">
           <div className="prose">

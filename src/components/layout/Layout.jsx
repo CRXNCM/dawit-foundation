@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Header from './Header'
@@ -6,6 +6,7 @@ import Footer from './Footer'
 import CustomCursor from '../experience/CustomCursor'
 import ScrollProgress from '../experience/ScrollProgress'
 import { useSmoothScroll } from '../../hooks/useSmoothScroll'
+import { usePageMotion } from '../../hooks/usePageMotion'
 import { useLanguage } from '../../context/LanguageContext'
 import { ScrollTrigger } from '../../lib/motion'
 
@@ -24,7 +25,9 @@ export default function Layout() {
   const { lang, t } = useLanguage()
   const location = useLocation()
   const reduce = useReducedMotion()
+  const mainRef = useRef(null)
   useSmoothScroll()
+  usePageMotion(mainRef, location.pathname)
 
   useEffect(() => {
     const match = Object.entries(titles).find(([path]) => location.pathname === path || (path !== '/' && location.pathname.startsWith(`${path}/`)))
@@ -39,19 +42,23 @@ export default function Layout() {
       <ScrollProgress />
       <CustomCursor />
       <Header />
-      <AnimatePresence mode="wait">
-        <motion.main
-          id="main"
-          className={location.pathname === '/' ? 'is-home' : 'page-shell'}
-          key={location.pathname}
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={reduce ? undefined : { opacity: 0, y: -8 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <Outlet />
-        </motion.main>
-      </AnimatePresence>
+      <main
+        ref={mainRef}
+        id="main"
+        className={location.pathname === '/' ? 'is-home' : 'page-shell'}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduce ? undefined : { opacity: 0, y: -10 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Outlet />
+          </motion.div>
+        </AnimatePresence>
+      </main>
       <Footer />
     </>
   )

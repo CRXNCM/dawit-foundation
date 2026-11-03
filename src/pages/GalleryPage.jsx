@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { gallery } from '../data/content'
 import Lightbox from '../components/experience/Lightbox'
+import PageIntro from '../components/ui/PageIntro'
 import { useLanguage } from '../context/LanguageContext'
 
 export default function GalleryPage() {
@@ -9,11 +10,7 @@ export default function GalleryPage() {
 
   return (
     <>
-      <section className="page-intro container">
-        <p className="eyebrow">{t.galleryPage.eyebrow}</p>
-        <h1>{t.galleryPage.title}</h1>
-        <p className="lead">{t.home.galleryNote}</p>
-      </section>
+      <PageIntro eyebrow={t.galleryPage.eyebrow} title={t.galleryPage.title} lead={t.home.galleryNote} />
       <section className="section" style={{ paddingTop: 12 }}>
         <div className="container masonry">
           {gallery.map((item) => (

@@ -37,9 +37,7 @@ export default function Header() {
     <header className={classes}>
       <div className="container header-inner">
         <Link className="brand" to="/" onClick={close} aria-label={t.brand}>
-          <span className="brand-plate">
-            <img className="brand-logo" src="/logo/dawit-yemariamwerk-logo.png" alt="" width="210" height="64" />
-          </span>
+          <img className="brand-logo" src="/logo/dawit-yemariamwerk-logo.png" alt="" width="280" height="64" />
         </Link>
         <nav className="header-nav" aria-label="Main">
           {t.nav.map((item) => (

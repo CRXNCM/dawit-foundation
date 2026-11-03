@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import PageIntro from '../components/ui/PageIntro'
 import { useLanguage } from '../context/LanguageContext'
 
 export default function DonatePage() {
@@ -7,11 +8,7 @@ export default function DonatePage() {
 
   return (
     <>
-      <section className="page-intro container">
-        <p className="eyebrow">{page.eyebrow}</p>
-        <h1>{page.title}</h1>
-        <p className="lead">{page.lead}</p>
-      </section>
+      <PageIntro eyebrow={page.eyebrow} title={page.title} lead={page.lead} />
       <section className="section section-white">
         <div className="container article-layout">
           <div className="timeline">

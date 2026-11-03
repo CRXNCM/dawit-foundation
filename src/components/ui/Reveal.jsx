@@ -1,18 +1,6 @@
-import { motion, useReducedMotion } from 'framer-motion'
-
-export default function Reveal({ as = 'div', children, className, delay = 0, ...props }) {
-  const reduce = useReducedMotion()
-  const Component = motion[as] ?? motion.div
-
+export default function Reveal({ as: Component = 'div', children, className, delay = 0, ...props }) {
   return (
-    <Component
-      className={className}
-      initial={reduce ? false : { opacity: 0, y: 18 }}
-      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
-      {...props}
-    >
+    <Component className={className} data-reveal data-delay={delay || undefined} {...props}>
       {children}
     </Component>
   )
